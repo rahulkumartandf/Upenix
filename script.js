@@ -2,7 +2,7 @@
 const pages = {
   home: `
     <section class="hero">
-      <h1>Welcome to Team Passion</h1>
+      <h1>Welcome to Team UpeNix</h1>
       <p>Empowering innovation, collaboration, and growth. Discover our journey and join our vibrant community!</p>
       <a href="#blogs" class="cta-btn" data-page="blogs">Read Our Blogs</a>
     </section>
@@ -47,7 +47,7 @@ const pages = {
       <h2>What People Say</h2>
       <div class="testimonial-list">
         <blockquote>
-          "Team Passion helped us achieve our goals faster than we imagined!"<br>
+          "Team UpeNix helped us achieve our goals faster than we imagined!"<br>
           <span>- Startup Founder</span>
         </blockquote>
         <blockquote>
@@ -58,7 +58,7 @@ const pages = {
     </section>
     <section class="cta">
       <h2>Ready to Join?</h2>
-      <p>Connect with us and become part of our passionate journey.</p>
+      <p>Connect with us and become part of our UpeNix-driven journey.</p>
       <a href="#news" class="cta-btn" data-page="news">See Latest News</a>
     </section>
   `,
