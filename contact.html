@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact UpeNix - Free IT Consulting Assessment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h2>UpeNix</h2>
+        <p>IT Consulting</p>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="case-studies.html" class="nav-link">Case Studies</a></li>
+        <li><a href="contact.html" class="nav-link active cta-nav">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Let's Transform Your IT Infrastructure</h1>
+    <p>Schedule Your Free Strategic Assessment Today</p>
+  </section>
+
+  <!-- Contact Content -->
+  <section class="content-section">
+    <div class="contact-container">
+      <div class="contact-form-section">
+        <h2>Schedule Your Free Consultation</h2>
+        <p>Our consultants will help you identify opportunities and create a personalized roadmap for your organization.</p>
+        
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company Name *</label>
+            <input type="text" id="company" name="company" required>
+          </div>
+
+          <div class="form-group">
+            <label for="title">Job Title *</label>
+            <input type="text" id="title" name="title" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Business Email *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+
+          <div class="form-group">
+            <label for="company-size">Company Size *</label>
+            <select id="company-size" name="company-size" required>
+              <option value="">Select an option</option>
+              <option value="50-200">50-200 employees</option>
+              <option value="200-500">200-500 employees</option>
+              <option value="500-1000">500-1000 employees</option>
+              <option value="1000+">1000+ employees</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="service">Primary Interest *</label>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              <option value="cloud">Cloud Migration</option>
+              <option value="security">Cybersecurity & Compliance</option>
+              <option value="ai">AI & Strategic Consulting</option>
+              <option value="other">Other / Multi-Service</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Tell Us About Your Challenge *</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Describe your current IT challenges and goals..."></textarea>
+          </div>
+
+          <div class="form-group checkbox">
+            <input type="checkbox" id="privacy" name="privacy" required>
+            <label for="privacy">I agree to receive communications from UpeNix about our services and industry insights *</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary-large">Schedule My Free Assessment</button>
+          
+          <p class="form-note">✓ We typically respond within 24 hours • No obligation • Completely confidential</p>
+        </form>
+
+        <div id="formSuccess" class="success-message" style="display: none;">
+          <h3>✓ Thank You!</h3>
+          <p>We've received your request. Our team will contact you within 24 hours to schedule your free consultation.</p>
+        </div>
+      </div>
+
+      <div class="contact-info-section">
+        <h2>Other Ways to Reach Us</h2>
+        
+        <div class="info-card">
+          <h3>📞 Phone</h3>
+          <p>+1 (800) 555-0123</p>
+          <p class="small">Available Monday-Friday, 9AM-6PM EST</p>
+        </div>
+
+        <div class="info-card">
+          <h3>📧 Email</h3>
+          <p><a href="mailto:hello@upenix.com">hello@upenix.com</a></p>
+          <p class="small">We respond to inquiries within 24 hours</p>
+        </div>
+
+        <div class="info-card">
+          <h3>🏢 Headquarters</h3>
+          <p>123 Tech Innovation Boulevard</p>
+          <p>New York, NY 10001</p>
+        </div>
+
+        <div class="info-card">
+          <h3>💼 For Sales Inquiries</h3>
+          <p><a href="mailto:sales@upenix.com">sales@upenix.com</a></p>
+          <p class="small">Enterprise agreements and partnerships</p>
+        </div>
+
+        <div class="info-card">
+          <h3>🔒 For Security Issues</h3>
+          <p><a href="mailto:security@upenix.com">security@upenix.com</a></p>
+          <p class="small">Report vulnerabilities responsibly</p>
+        </div>
+
+        <div class="info-box">
+          <h3>What to Expect</h3>
+          <ul>
+            <li>Initial 30-minute discovery call</li>
+            <li>Custom assessment of your infrastructure</li>
+            <li>Personalized roadmap with recommendations</li>
+            <li>No sales pressure, just expert guidance</li>
+            <li>Confidential and under NDA if needed</li>
+          </ul>
+        </div>
+
+        <div class="info-box accent">
+          <p><strong>Looking for something specific?</strong></p>
+          <p>Browse our <a href="services.html">services page</a> for detailed information about cloud migration, cybersecurity, and AI consulting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="content-section bg-light">
+    <div class="section-content">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>How much does a consultation cost?</h3>
+          <p>Our initial consultation is completely free. We assess your needs and provide recommendations with no obligation.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What's your typical engagement timeline?</h3>
+          <p>Most projects take 3-12 months depending on scope. We'll provide a detailed timeline after our assessment.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do you work with companies our size?</h3>
+          <p>We specialize in mid-sized financial services companies with $1B-$100B in AUM. We understand your unique challenges.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What makes UpeNix different?</h3>
+          <p>Deep financial services expertise, proven methodologies, dedicated support, and a track record of delivering measurable results.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can you handle existing vendor relationships?</h3>
+          <p>Absolutely. We work alongside your existing vendors and partners to ensure seamless integration.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Are you SOC 2 and security-certified?</h3>
+          <p>Yes. We maintain SOC 2 Type II, hold multiple cloud certifications, and comply with all relevant security standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Badges -->
+  <section class="trust-section">
+    <h2>Trusted by Leading Financial Institutions</h2>
+    <div class="trust-badges">
+      <div class="badge">🏆 Industry Recognized</div>
+      <div class="badge">✓ SOC 2 Type II</div>
+      <div class="badge">✓ PCI-DSS Compliant</div>
+      <div class="badge">✓ ISO 27001</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>UpeNix</h4>
+        <p>Premier IT consulting for financial services innovation.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Cloud Migration</a></li>
+          <li><a href="services.html">Cybersecurity</a></li>
+          <li><a href="services.html">AI Strategy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>Email: hello@upenix.com</p>
+        <p>Phone: +1 (800) 555-0123</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 UpeNix. All rights reserved. | Privacy Policy | Terms of Service</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
