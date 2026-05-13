@@ -25,6 +25,18 @@
   --shadow-lg: 0 8px 30px rgba(0, 31, 63, 0.15);
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 body {
   font-family: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
@@ -1265,32 +1277,311 @@ body {
   }
 }
 
-@media (max-width: 480px) {
-  .nav-link {
-    font-size: 13px;
-    padding: 6px 8px;
+/* ============================================
+   BLOG SECTION
+   ============================================ */
+
+.blog-filters-section {
+  padding: 40px 20px;
+  background: var(--cool-grey);
+  border-bottom: 1px solid var(--grey-medium);
+}
+
+.blog-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filter-btn {
+  background: white;
+  border: 2px solid var(--grey-medium);
+  color: var(--grey-dark);
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--electric-blue);
+  color: var(--electric-blue);
+}
+
+.filter-btn.active {
+  background: var(--electric-blue);
+  border-color: var(--electric-blue);
+  color: white;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.blog-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border: 1px solid var(--grey-medium);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.blog-card.hidden {
+  display: none;
+}
+
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.blog-category {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--electric-blue) 0%, var(--electric-blue-light) 100%);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.blog-date {
+  font-size: 12px;
+  color: var(--grey-dark);
+  white-space: nowrap;
+}
+
+.blog-card h3 {
+  font-size: 20px;
+  color: var(--navy);
+  margin-bottom: 15px;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.blog-card p {
+  color: var(--grey-dark);
+  margin-bottom: 20px;
+  line-height: 1.6;
+  flex-grow: 1;
+  font-size: 14px;
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--grey-medium);
+  font-size: 13px;
+  color: var(--grey-dark);
+}
+
+.blog-author {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.blog-read-time {
+  color: #999;
+}
+
+.read-more {
+  display: inline-block;
+  color: var(--electric-blue);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+
+.read-more:hover {
+  transform: translateX(5px);
+}
+
+/* ============================================
+   NEWSLETTER SECTION
+   ============================================ */
+
+.newsletter-section {
+  padding: 60px 20px;
+  background: var(--navy);
+}
+
+.newsletter-card {
+  background: white;
+  padding: 50px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.newsletter-card h2 {
+  color: var(--navy);
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.newsletter-card p {
+  color: var(--grey-dark);
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.newsletter-form .form-group {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.newsletter-form input {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 1px solid var(--grey-medium);
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.newsletter-form button {
+  padding: 12px 30px;
+  white-space: nowrap;
+}
+
+.newsletter-form .form-note {
+  font-size: 12px;
+  color: var(--grey-dark);
+  margin: 0;
+}
+
+/* ============================================
+   RESOURCES GRID
+   ============================================ */
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.resource-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid var(--grey-medium);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.resource-type {
+  display: inline-block;
+  background: var(--cool-grey);
+  color: var(--navy);
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.resource-card h3 {
+  font-size: 18px;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.resource-card p {
+  color: var(--grey-dark);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.resource-card .btn {
+  display: inline-block;
+}
+
+/* ============================================
+   RESPONSIVE - BLOG
+   ============================================ */
+
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
   }
 
-  .nav-link.cta-nav {
+  .blog-filters {
+    gap: 10px;
+  }
+
+  .filter-btn {
     padding: 8px 16px;
+    font-size: 12px;
   }
 
-  .hero h1 {
-    font-size: 24px;
+  .blog-card {
+    padding: 20px;
   }
 
-  .hero p {
-    font-size: 16px;
+  .blog-card h3 {
+    font-size: 18px;
   }
 
-  .btn {
-    padding: 12px 24px;
-    font-size: 14px;
+  .newsletter-card {
+    padding: 30px 20px;
   }
 
-  .value-proposition h2,
-  .services-preview h2 {
-    font-size: 24px;
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-form .form-group {
+    flex-direction: column;
+  }
+
+  .newsletter-form input,
+  .newsletter-form button {
+    width: 100%;
+  }
+
+  .resources-grid {
+    grid-template-columns: 1fr;
   }
 }
 .hero h1 {

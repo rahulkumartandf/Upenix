@@ -1,10 +1,101 @@
 // UpeNix Website JavaScript
-// Handles form submission, navigation, and interactions
+// Handles form submission, navigation, interactions, and blog filtering
 
 document.addEventListener('DOMContentLoaded', function() {
   initializeForm();
   setActiveNavLink();
+  initializeBlogFilters();
+  initializeNewsletterForm();
 });
+
+// ============================================
+// Blog Filtering
+// ============================================
+
+function initializeBlogFilters() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  
+  if (filterBtns.length === 0) return; // Not on blog page
+  
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const filter = this.getAttribute('data-filter');
+      
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Filter blog posts
+      filterBlogPosts(filter);
+    });
+  });
+}
+
+function filterBlogPosts(filter) {
+  const blogCards = document.querySelectorAll('.blog-card');
+  let visibleCount = 0;
+  
+  blogCards.forEach(card => {
+    const category = card.getAttribute('data-category');
+    
+    if (filter === 'all' || category === filter) {
+      card.classList.remove('hidden');
+      visibleCount++;
+      // Add animation
+      card.style.animation = 'none';
+      setTimeout(() => {
+        card.style.animation = 'fadeIn 0.5s ease';
+      }, 10);
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  
+  console.log(`Showing ${visibleCount} posts for filter: ${filter}`);
+}
+
+// ============================================
+// Newsletter Form Handling
+// ============================================
+
+function initializeNewsletterForm() {
+  const newsletterForm = document.getElementById('newsletterForm');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      handleNewsletterSubmit(newsletterForm);
+    });
+  }
+}
+
+function handleNewsletterSubmit(form) {
+  const email = form.querySelector('input[type="email"]').value;
+  
+  const newsletterData = {
+    email: email,
+    timestamp: new Date().toISOString(),
+    source: 'blog_newsletter'
+  };
+
+  console.log('Newsletter signup:', newsletterData);
+
+  // Store in localStorage
+  const signups = JSON.parse(localStorage.getItem('upenix_newsletter_signups') || '[]');
+  signups.push(newsletterData);
+  localStorage.setItem('upenix_newsletter_signups', JSON.stringify(signups));
+
+  // Show success message
+  const button = form.querySelector('button');
+  const originalText = button.textContent;
+  button.textContent = '✓ Subscribed!';
+  button.disabled = true;
+
+  setTimeout(() => {
+    form.reset();
+    button.textContent = originalText;
+    button.disabled = false;
+  }, 3000);
+}
 
 // ============================================
 // Form Handling
@@ -144,6 +235,12 @@ function hasFormBeenSubmitted() {
 function getRecentSubmissions(limit = 5) {
   const submissions = JSON.parse(localStorage.getItem('upenix_submissions') || '[]');
   return submissions.slice(-limit).reverse();
+}
+
+// Get newsletter signups
+function getNewsletterSignups(limit = 5) {
+  const signups = JSON.parse(localStorage.getItem('upenix_newsletter_signups') || '[]');
+  return signups.slice(-limit).reverse();
 }
     <p>Here you can publish latest news and updates.</p>
   `
