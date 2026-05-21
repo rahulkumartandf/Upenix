@@ -87,11 +87,12 @@ body {
 }
 
 .logo-img {
-  height: 56px;
-  width: 100px;
+  height: 72px;
+  width: 128px;
   aspect-ratio: 16/9;
   object-fit: contain;
   transition: all 0.3s ease;
+  filter: brightness(1.05) contrast(1.1) drop-shadow(0 2px 4px rgba(0, 31, 63, 0.15));
 }
 
 .nav-menu {
