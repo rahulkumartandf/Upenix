@@ -86,6 +86,14 @@ body {
   text-transform: uppercase;
 }
 
+.logo-img {
+  height: 56px;
+  width: 100px;
+  aspect-ratio: 16/9;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
 .nav-menu {
   display: flex;
   list-style: none;
