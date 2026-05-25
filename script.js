@@ -111,7 +111,7 @@ function initializeForm() {
   }
 }
 
-function handleFormSubmit(form) {
+async function handleFormSubmit(form) {
   // Get form data
   const formData = {
     name: form.querySelector('#name').value,
@@ -125,30 +125,91 @@ function handleFormSubmit(form) {
     timestamp: new Date().toISOString()
   };
 
-  // Log the form data (in production, send to backend)
-  console.log('Form submitted:', formData);
+  // Validate form data
+  if (emailService) {
+    const validation = emailService.validateFormData(formData);
+    if (!validation.isValid) {
+      showFormError(form, validation.errors.join(', '));
+      return;
+    }
+  }
 
-  // Store in localStorage for demonstration
-  const submissions = JSON.parse(localStorage.getItem('upenix_submissions') || '[]');
-  submissions.push(formData);
-  localStorage.setItem('upenix_submissions', JSON.stringify(submissions));
+  // Disable submit button and show loading state
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalButtonText = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = EMAIL_CONFIG.MESSAGES.SENDING;
 
-  // Show success message
-  showFormSuccess(form);
-
-  // Reset form after 2 seconds
-  setTimeout(() => {
-    form.reset();
-    hideFormSuccess();
-  }, 2000);
+  // Send email via EmailService
+  try {
+    const result = await emailService.sendConsultationRequest(formData);
+    
+    if (result.success) {
+      console.log('Form submission successful:', formData);
+      showFormSuccess(form, result.message);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        form.reset();
+        hideFormSuccess();
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }, 3000);
+    } else {
+      console.error('Form submission failed:', result.error);
+      showFormError(form, result.message);
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
+  } catch (error) {
+    console.error('Unexpected error during form submission:', error);
+    showFormError(form, EMAIL_CONFIG.MESSAGES.ERROR);
+    submitButton.disabled = false;
+    submitButton.textContent = originalButtonText;
+  }
 }
 
-function showFormSuccess(form) {
+function showFormSuccess(form, message) {
   const successMessage = form.nextElementSibling;
   if (successMessage && successMessage.classList.contains('success-message')) {
+    // Update message text if provided
+    if (message) {
+      const messageP = successMessage.querySelector('p');
+      if (messageP) {
+        messageP.textContent = message;
+      }
+    }
     successMessage.style.display = 'block';
     form.style.display = 'none';
   }
+}
+
+function showFormError(form, errorMessage) {
+  // Remove previous error if exists
+  const existingError = form.parentElement.querySelector('.error-message');
+  if (existingError) {
+    existingError.remove();
+  }
+
+  // Create and show error message
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'error-message';
+  errorDiv.style.cssText = `
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #f5c6cb;
+  `;
+  errorDiv.textContent = errorMessage;
+
+  form.parentElement.insertBefore(errorDiv, form);
+
+  // Auto-remove error after 5 seconds
+  setTimeout(() => {
+    errorDiv.remove();
+  }, 5000);
 }
 
 function hideFormSuccess() {
