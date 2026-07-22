@@ -359,36 +359,3 @@ function getNewsletterSignups(limit = 5) {
   const signups = JSON.parse(localStorage.getItem('upenix_newsletter_signups') || '[]');
   return signups.slice(-limit).reverse();
 }
-    <p>Here you can publish latest news and updates.</p>
-  `
-};
-
-// Load a page
-function loadPage(page) {
-  document.getElementById("content").innerHTML = pages[page];
-
-  // Update active tab
-  document.querySelectorAll("nav a").forEach(link => {
-    link.classList.remove("active");
-    if (link.dataset.page === page) {
-      link.classList.add("active");
-    }
-  });
-
-  // Save current page in URL hash
-  window.location.hash = page;
-}
-
-// Setup navigation
-document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    loadPage(link.dataset.page);
-  });
-});
-
-// Load page from hash or default to home
-window.addEventListener("load", () => {
-  const page = window.location.hash.replace("#", "") || "home";
-  loadPage(page);
-});
