@@ -6,7 +6,63 @@ document.addEventListener('DOMContentLoaded', function() {
   setActiveNavLink();
   initializeBlogFilters();
   initializeNewsletterForm();
+  renderBlogPosts();
+  renderBlogPostDetail();
 });
+
+// ============================================
+// Blog Rendering
+// ============================================
+
+function renderBlogPosts() {
+  const blogGrid = document.getElementById('blogGrid');
+  if (!blogGrid || typeof window.blogPosts === 'undefined') return;
+
+  const posts = window.blogPosts;
+  blogGrid.innerHTML = posts.map(post => `
+    <article class="blog-card" data-category="${post.categoryKey}">
+      <div class="blog-header">
+        <span class="blog-category">${post.category}</span>
+        <span class="blog-date">${post.date}</span>
+      </div>
+      <h3>${post.title}</h3>
+      <p>${post.excerpt}</p>
+      <div class="blog-meta">
+        <span class="blog-author">By ${post.author}</span>
+        <span class="blog-read-time">${post.readTime}</span>
+      </div>
+      <a href="blog-post.html?slug=${post.slug}" class="read-more">Read Full Article →</a>
+    </article>
+  `).join('');
+}
+
+function renderBlogPostDetail() {
+  const detailRoot = document.getElementById('blogPostDetail');
+  if (!detailRoot || typeof window.blogPosts === 'undefined') return;
+
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+  const post = window.blogPosts.find(item => item.slug === slug);
+
+  if (!post) {
+    detailRoot.innerHTML = '<p class="form-note">The requested article could not be found.</p>';
+    return;
+  }
+
+  detailRoot.innerHTML = `
+    <article class="blog-post-content">
+      <p class="resource-type">${post.category}</p>
+      <h1>${post.title}</h1>
+      <div class="featured-post-meta">
+        <span>By ${post.author}</span>
+        <span>${post.readTime}</span>
+        <span>${post.date}</span>
+      </div>
+      ${post.content.map(paragraph => `<p>${paragraph}</p>`).join('')}
+      <a href="blog.html" class="btn btn-primary">Back to all articles</a>
+    </article>
+  `;
+}
 
 // ============================================
 // Blog Filtering
